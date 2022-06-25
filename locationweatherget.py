@@ -38,6 +38,15 @@ def locationweather():
 
     return getTemp()
 
+def locationweather2():
+    x = []
+    tempf, humidity, weather = locationweather()
+    x.append(tempf)
+    x.append(humidity)
+    x.append(weather)
+    return x
+#print(locationweather2())
+
 def recommendations():
     #from locationweatherget import locationweather
 

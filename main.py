@@ -170,6 +170,8 @@ Builder.load_string("""
                 root.manager.transition.duration = 1
                 root.manager.current = 'screen_one'
 
+        
+
 <ScreenFive>:
     FloatLayout:
         Button:
@@ -184,6 +186,26 @@ Builder.load_string("""
                 root.manager.transition.direction = 'right'
                 root.manager.transition.duration = 1
                 root.manager.current = 'screen_one'
+
+        Button:
+
+            text: "Check the Weather!"
+            pos: 100, 710
+            size: 300, 50
+            size_hint: None, None
+            background_color: 1, 0.75, 0.95, 1
+            on_press:
+                root.weatherstuff()
+
+        Button:
+
+            text: "Get Weather Advice!"
+            pos: 100, 400
+            size: 300, 50
+            size_hint: None, None
+            background_color: 1, 0.75, 0.95, 1
+            on_press:
+                root.recommendstuff()
 
 <ScreenSix>:
     FloatLayout:
@@ -293,9 +315,23 @@ class ScreenFour(Screen):
 	pass
 
 class ScreenFive(Screen):
-	def weatherstuff():
-        from locationweatherget import locationweather
-        return locationweather()
+
+    def weatherstuff(self):
+        from locationweatherget import locationweather2
+        x = locationweather2()
+        print(x)
+        print("locationweather")
+        return x
+
+    def recommendstuff(self):
+        from locationweatherget import recommendations
+        x = recommendations()
+        print(x)
+        y = ""
+        y = "It is recommended that you wear "+str(x[0])+", "+str(x[1])+", and "+str(x[2])
+        print(y)
+        return y
+#        print("recommendations")
 
 class ScreenSix(Screen):
     def analyze(self):
@@ -320,7 +356,7 @@ screen_manager.add_widget(ScreenOne(name ="screen_one"))
 screen_manager.add_widget(ScreenTwo(name ="screen_two"))
 screen_manager.add_widget(ScreenThree(name ="screen_three"))
 screen_manager.add_widget(ScreenFour(name ="screen_four"))
-screen_manager.add_widget(ScreenThree(name ="screen_five"))
+screen_manager.add_widget(ScreenFive(name ="screen_five"))
 screen_manager.add_widget(ScreenSix(name ="screen_six"))
 
 class ScreenApp(App):
