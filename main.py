@@ -293,7 +293,9 @@ class ScreenFour(Screen):
 	pass
 
 class ScreenFive(Screen):
-	pass
+	def weatherstuff():
+        from locationweatherget import locationweather
+        return locationweather()
 
 class ScreenSix(Screen):
     def analyze(self):
@@ -309,8 +311,6 @@ class ScreenSix(Screen):
             sizeID = self.ids.sizeID.text
             descriptionID = self.ids.descriptionID.text
             favID = self.ids.favID.text
-
-
 
 
 screen_manager = ScreenManager()
