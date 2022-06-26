@@ -366,6 +366,9 @@ Builder.load_string("""
                 # You can define the duration of the change
                 # and the direction of the slide
                 root.process()
+                root.manager.transition.direction = 'right'
+                root.manager.transition.duration = 1
+                root.manager.current = 'screen_one'
 
 """)
 
@@ -376,8 +379,6 @@ class ScreenOne(Screen):
 type = ""
 class ScreenTwo(Screen):
     global type
-    def runCamera(self):
-            print("hi")
     def capture(self):
             global type
             camera = self.ids['camera']
@@ -452,6 +453,14 @@ class ScreenSix(Screen):
             or_dir = 'capture.png'
             dst_dir = "pictures/" + y + ".png"
             shutil.copy(or_dir, dst_dir)
+
+            #clear
+            self.ids.typeID.text = ""
+            self.ids.statusID.text = ""
+            self.ids.priceID.text = ""
+            self.ids.sizeID.text = ""
+            self.ids.descriptionID.text = ""
+            self.ids.favID.text=""
 
 screen_manager = ScreenManager()
 
