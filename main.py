@@ -47,7 +47,7 @@ Builder.load_string("""
         Label:
             id: description_label
             text:
-                "Alfashion"
+                "Alphashion"
             pos: 0, 300
             font_size: 16
             color: 0, 0, 0, 1
@@ -373,8 +373,10 @@ class ScreenTwo(Screen):
 
             print("Captured")
     def imageselect(self):
+        global type
         from selectionanalysis import selectImageandAnalyze
         selectImageandAnalyze()
+        type = ml_imageprediction("capture.png")
 
 class ScreenThree(Screen):
 	pass

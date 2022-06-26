@@ -18,7 +18,7 @@ def read_data():
 
 def write_row(input):
     import csv
-    with open(file_name, 'a') as f:
+    with open(file_name, 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(input)
         f.close()
@@ -44,7 +44,6 @@ def generateID():
         aaa = aaa+item
     return aaa
 
-# append_data(generateID(), "shirt", "washed", 40.0, "small", "cool shirt", False)
 def getlistoflists():
     import csv
 
