@@ -188,24 +188,37 @@ Builder.load_string("""
                 root.manager.current = 'screen_one'
 
         Button:
-
+            id: weather_check
             text: "Check the Weather!"
-            pos: 100, 710
+            pos: 100, 600
             size: 300, 50
             size_hint: None, None
             background_color: 1, 0.75, 0.95, 1
             on_press:
                 root.weatherstuff()
 
-        Button:
+        Label:
+			id: name_check
+			text: "Current Weather"
+            pos: 40, 150
+			font_size: 22
+            color: 0, 0, 0, 1
 
+        Button:
+            id: weather_rec
             text: "Get Weather Advice!"
-            pos: 100, 400
+            pos: 100, 300
             size: 300, 50
             size_hint: None, None
             background_color: 1, 0.75, 0.95, 1
             on_press:
                 root.recommendstuff()
+        Label:
+			id: name_rec
+			text: "Clothing Recommendation"
+            pos: 40, -200
+			font_size: 22
+            color: 0, 0, 0, 1
 
 <ScreenSix>:
     FloatLayout:
@@ -321,8 +334,10 @@ class ScreenFive(Screen):
         x = locationweather2()
         #print(x)
     #    print("locationweather")
-        y = "The current temperature is " + str(x[0]) + "F, humidity is " + str(x[1]) + "%, and the forecast is " + str(x[2])
+        y = "The current temperature is " + str(x[0]) + "F," + "\n"+ " humidity is " + str(x[1]) + "%," + "\n"+ "and the forecast is " + str(x[2])
         print(y)
+        self.ids.name_check.text = y
+        self.ids.weather_check.disabled = True
         return y
 
     def recommendstuff(self):
@@ -330,8 +345,10 @@ class ScreenFive(Screen):
         x = recommendations()
         #print(x)
         y = ""
-        y = "It is recommended that you wear: "+str(x[0])+", "+str(x[1])+", or "+str(x[2])
+        y = "It is recommended that you wear a: "+ "\n" +str(x[0])+", " + "\n" +str(x[1])+"," + "\n"+ "or " +str(x[2])+ "\n"+"based on the current weather!"
         print(y)
+        self.ids.name_rec.text = y
+        self.ids.weather_rec.disabled = True
         return y
 #        print("recommendations")
 
