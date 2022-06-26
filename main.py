@@ -170,7 +170,7 @@ Builder.load_string("""
                 root.manager.transition.duration = 1
                 root.manager.current = 'screen_one'
 
-        
+
 
 <ScreenFive>:
     FloatLayout:
@@ -319,16 +319,18 @@ class ScreenFive(Screen):
     def weatherstuff(self):
         from locationweatherget import locationweather2
         x = locationweather2()
-        print(x)
-        print("locationweather")
-        return x
+        #print(x)
+    #    print("locationweather")
+        y = "The current temperature is " + str(x[0]) + "F, humidity is " + str(x[1]) + "%, and the forecast is " + str(x[2])
+        print(y)
+        return y
 
     def recommendstuff(self):
         from locationweatherget import recommendations
         x = recommendations()
-        print(x)
+        #print(x)
         y = ""
-        y = "It is recommended that you wear "+str(x[0])+", "+str(x[1])+", and "+str(x[2])
+        y = "It is recommended that you wear: "+str(x[0])+", "+str(x[1])+", or "+str(x[2])
         print(y)
         return y
 #        print("recommendations")

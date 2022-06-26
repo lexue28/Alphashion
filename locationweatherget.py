@@ -67,5 +67,5 @@ def recommendations():
         recommendationlist.append("boots")
         recommendationlist.append("coat")
 
-    print(recommendationlist)
+#    print(recommendationlist)
     return(recommendationlist)
