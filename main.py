@@ -426,7 +426,14 @@ class ScreenSix(Screen):
             sizeID = self.ids.sizeID.text
             descriptionID = self.ids.descriptionID.text
             favID = self.ids.favID.text
-            append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
+            y = append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
+
+            import shutil
+            import os
+
+            or_dir = 'capture.png'
+            dst_dir = "pictures/" + y + ".png"
+            shutil.copy(or_dir, dst_dir)
 
 
 screen_manager = ScreenManager()
