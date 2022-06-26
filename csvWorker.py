@@ -15,8 +15,6 @@ def read_data():
         csvreader = csv.reader(file)
         for row in csvreader:
             data.append(row)
-    data.pop(0)
-    return data
 
 def write_row(input):
     import csv

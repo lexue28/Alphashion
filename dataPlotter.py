@@ -16,6 +16,7 @@ global list
 list = [
     ['t-shirt', 'trousers', 'pullover shirt', 'dress', 'coat', 'sandal', 'shirt', 'sneakers', 'bag/backpack', 'boots'],
     [],
+    [],
     []
 ]
 
@@ -26,7 +27,7 @@ def update_list():
     temp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     total = 0
     for row in csvWorker.data:
-        str = row[2]
+        str = row[1]
         id = -1
         if  str == "t-shirt":
             id = 0
@@ -56,6 +57,9 @@ def update_list():
         x[i] = float(temp[i])/total
     list[2] = x
 
+    for row in csvWorker.data:
+        list[3].append(float(row[3]))
+
 def bar_graph():
     update_list()
     plt.figure(figsize=(8,4), tight_layout=True)
@@ -83,7 +87,7 @@ def line_graph():
     update_list()
     plt.figure(figsize=(10,6), tight_layout=True)
 
-    plt.plot(list[1], 'o-', linewidth=2)
+    plt.plot(list[3], 'o-', linewidth=2)
 
     plt.xlabel('Time')
     plt.ylabel('Price')
@@ -97,4 +101,4 @@ def line_graph():
 # print(list[1])
 # print(list[2])
 
-# pie_graph()
+# line_graph()
