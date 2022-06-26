@@ -26,7 +26,7 @@ def update_list():
     temp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     total = 0
     for row in csvWorker.data:
-        str = row[1]
+        str = row
         id = -1
         if  str == "t-shirt":
             id = 0
@@ -70,7 +70,7 @@ def bar_graph():
 def pie_graph():
     update_list()
     colors = sns.color_palette('pastel')
-    plt.figure(figsize=(7, 6), tight_layout=True)
+    plt.figure(figsize=(8, 6), tight_layout=True)
 
     plt.pie(list[1], labels=list[0], autopct='%.0f %%', pctdistance=.7,
               colors=colors, shadow=True)

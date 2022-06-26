@@ -10,7 +10,7 @@ FadeTransition, WipeTransition, FallOutTransition, RiseInTransition)
 
 
 from kivy.config import Config
-Config.set('graphics', 'width', '440')
+Config.set('graphics', 'width', '441')
 Config.set('graphics', 'height', '800')
 Config.set('graphics', 'resizable', False)
 
@@ -19,14 +19,27 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.core.window import Window
 import tkinter
+from dataPlotter import bar_graph
+from dataPlotter import pie_graph
+from machinelearning import ml_imageprediction
+
 
 
 Window.clearcolor = (0.9, 0.9, 0.9, 1)
 
-#analyze code here
-def analyzeAI():
-    return "shirt"
+'''
+Removed closet tab: will add back later
+Button:
+    background_normal: 'closet.png'
+    size: 110, 110
+    size_hint: None, None
+    on_press:
+        root.manager.transition.direction = 'left'
+        root.manager.transition.duration = 1
+        root.manager.current = 'screen_three'
 
+
+'''
 
 Builder.load_string("""
 <ScreenOne>:
@@ -59,7 +72,7 @@ Builder.load_string("""
 
         Button:
             background_normal: 'camera.png'
-            size: 110, 110
+            size: 147, 147
             size_hint: None, None
             on_press:
                 # You can define the duration of the change
@@ -67,17 +80,10 @@ Builder.load_string("""
                 root.manager.transition.direction = 'left'
                 root.manager.transition.duration = 1
                 root.manager.current = 'screen_two'
-        Button:
-            background_normal: 'closet.png'
-            size: 110, 110
-            size_hint: None, None
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.transition.duration = 1
-                root.manager.current = 'screen_three'
+
         Button:
             background_normal: 'graphicon.png'
-            size: 110, 110
+            size: 147, 147
             size_hint: None, None
             on_press:
                 # You can define the duration of the change
@@ -89,7 +95,7 @@ Builder.load_string("""
         Button:
             background_normal: 'weather.png'
 
-            size: 110, 110
+            size: 147, 147
             size_hint: None, None
             on_press:
                 # You can define the duration of the change
@@ -157,6 +163,13 @@ Builder.load_string("""
                 root.manager.current = 'screen_one'
 <ScreenFour>:
     FloatLayout:
+        Label:
+    		text: "Clothing Graphs"
+            pos: 20, 350
+    		font_size: 26
+            color: 1, 0.75, 0.95, 1
+            bold: True
+
         Button:
 
             background_normal: 'backbutton.png'
@@ -169,11 +182,52 @@ Builder.load_string("""
                 root.manager.transition.direction = 'right'
                 root.manager.transition.duration = 1
                 root.manager.current = 'screen_one'
+        Button:
+            text: "Bar Graph"
+            pos: 90, 600
+            size: 300, 50
+            size_hint: None, None
+            background_color: 1, 0.75, 0.95, 1
+            on_press:
+                root.runBar()
+        Label:
+			text: "Bar Graph: Type of clothing vs. Quality"
+            pos: 30, 150
+			font_size: 16
+            color: 0, 0, 0, 1
+
+        Button:
+            pos: 90, 300
+            size: 300, 50
+            size_hint: None, None
+            background_color: 1, 0.75, 0.95, 1
+            text: "Pie Chart"
+            on_press:
+                root.runPie()
+        Label:
+			text: "Pie Chart: Type of clothing"
+            pos: 30, -150
+			font_size: 16
+            color: 0, 0, 0, 1
+
 
 
 
 <ScreenFive>:
     FloatLayout:
+
+        Label:
+    		text: "Weather Predictions"
+            pos: 20, 350
+    		font_size: 26
+            color: 1, 0.75, 0.95, 1
+            bold: True
+        Label:
+			text: "Click the buttons below to recieve accurate predictions!"
+            pos: 5, 300
+			font_size: 16
+            color: 0, 0, 0, 1
+
         Button:
 
             background_normal: 'backbutton.png'
@@ -190,7 +244,7 @@ Builder.load_string("""
         Button:
             id: weather_check
             text: "Check the Weather!"
-            pos: 100, 600
+            pos: 90, 600
             size: 300, 50
             size_hint: None, None
             background_color: 1, 0.75, 0.95, 1
@@ -200,14 +254,14 @@ Builder.load_string("""
         Label:
 			id: name_check
 			text: "Current Weather"
-            pos: 40, 150
-			font_size: 22
+            pos: 30, 150
+			font_size: 16
             color: 0, 0, 0, 1
 
         Button:
             id: weather_rec
             text: "Get Weather Advice!"
-            pos: 100, 300
+            pos: 90, 300
             size: 300, 50
             size_hint: None, None
             background_color: 1, 0.75, 0.95, 1
@@ -215,9 +269,9 @@ Builder.load_string("""
                 root.recommendstuff()
         Label:
 			id: name_rec
-			text: "Clothing Recommendation"
-            pos: 40, -200
-			font_size: 22
+			text: "Clothing Recommendations based on Weather"
+            pos: 30, -175
+			font_size: 16
             color: 0, 0, 0, 1
 
 <ScreenSix>:
@@ -306,16 +360,17 @@ class ScreenOne(Screen):
 	pass
    	# Replace the given image source value:
 
-
+type = ""
 class ScreenTwo(Screen):
     global type
     def runCamera(self):
             print("hi")
     def capture(self):
-            type = "shirt"
-            print(type)
+            global type
             camera = self.ids['camera']
             camera.export_to_png("capture.png")
+            type = ml_imageprediction("capture.png")
+
             print("Captured")
     def imageselect(self):
         from selectionanalysis import selectImageandAnalyze
@@ -325,15 +380,17 @@ class ScreenThree(Screen):
 	pass
 
 class ScreenFour(Screen):
-	pass
+    def runBar(self):
+            bar_graph()
+    def runPie(self):
+            pie_graph()
+
 
 class ScreenFive(Screen):
 
     def weatherstuff(self):
         from locationweatherget import locationweather2
         x = locationweather2()
-        #print(x)
-    #    print("locationweather")
         y = "The current temperature is " + str(x[0]) + "F," + "\n"+ " humidity is " + str(x[1]) + "%," + "\n"+ "and the forecast is " + str(x[2])
         print(y)
         self.ids.name_check.text = y
@@ -354,9 +411,9 @@ class ScreenFive(Screen):
 
 class ScreenSix(Screen):
     def analyze(self):
-        holder = analyzeAI()
-        print(holder)
-        self.ids.typeID.text = holder
+        global type
+        print(type)
+        self.ids.typeID.text = type
 
     def process(self):
 
