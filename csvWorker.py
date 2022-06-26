@@ -13,8 +13,9 @@ def read_data():
     with open(file_name, 'r', newline='') as file:
         csvreader = csv.reader(file)
         for row in csvreader:
+            if row == '':
+                continue
             data.append(row)
-    data.pop(0)
 
 def write_row(input):
     import csv
