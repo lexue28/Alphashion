@@ -91,3 +91,10 @@ def line_graph():
 
     # plt.savefig('graphs/line_graph.png')
     plt.show()
+
+# update_list()
+# print(list[0])
+# print(list[1])
+# print(list[2])
+
+# pie_graph()
