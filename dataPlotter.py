@@ -26,7 +26,7 @@ def update_list():
     temp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     total = 0
     for row in csvWorker.data:
-        str = row
+        str = row[2]
         id = -1
         if  str == "t-shirt":
             id = 0

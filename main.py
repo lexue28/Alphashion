@@ -23,7 +23,7 @@ from dataPlotter import bar_graph
 from dataPlotter import pie_graph
 from machinelearning import ml_imageprediction
 from csvWorker import append_data
-
+from csvWorker import read_data
 
 
 Window.clearcolor = (0.9, 0.9, 0.9, 1)
@@ -419,7 +419,7 @@ class ScreenSix(Screen):
         self.ids.typeID.text = type
 
     def process(self):
-
+            self.ids.typeID.text = type
             typeID = self.ids.typeID.text
             statusID = self.ids.statusID.text
             priceID = self.ids.priceID.text
@@ -427,6 +427,7 @@ class ScreenSix(Screen):
             descriptionID = self.ids.descriptionID.text
             favID = self.ids.favID.text
             append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
+            print(read_data())
 
 
 screen_manager = ScreenManager()

@@ -6,6 +6,7 @@ global file_name
 header = ['ID', 'Type', 'Status', 'Price', 'Size', 'Description', 'Favorite']
 data = []
 file_name = 'documents/user_data.csv'
+#file_name = 'documents/test.csv'
 
 def read_data():
     global data
@@ -15,6 +16,7 @@ def read_data():
         for row in csvreader:
             data.append(row)
     data.pop(0)
+    return data
 
 def write_row(input):
     import csv
