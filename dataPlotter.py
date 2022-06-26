@@ -58,7 +58,7 @@ def update_list():
     list[2] = x
 
     for row in csvWorker.data:
-        list[3].append(float(row[3]))
+        list[3].append(row[3])
 
 def bar_graph():
     update_list()
@@ -89,7 +89,7 @@ def line_graph():
 
     plt.plot(list[3], 'o-', linewidth=2)
 
-    plt.xlabel('Time')
+    plt.xlabel('Time picture taken')
     plt.ylabel('Price')
     plt.title('Clothes Price Over Time')
 

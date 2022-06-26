@@ -433,7 +433,7 @@ class ScreenSix(Screen):
         self.ids.typeID.text = type
 
     def process(self):
-            self.ids.typeID.text = type
+            #self.ids.typeID.text = type
             typeID = self.ids.typeID.text
             statusID = self.ids.statusID.text
             priceID = self.ids.priceID.text
@@ -441,8 +441,8 @@ class ScreenSix(Screen):
             descriptionID = self.ids.descriptionID.text
             favID = self.ids.favID.text
 
-            append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
-            print(read_data())
+            '''append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
+            print(read_data())'''
 
             y = append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
 
