@@ -22,6 +22,7 @@ import tkinter
 from dataPlotter import bar_graph
 from dataPlotter import pie_graph
 from machinelearning import ml_imageprediction
+from csvWorker import append_data
 
 
 
@@ -425,6 +426,7 @@ class ScreenSix(Screen):
             sizeID = self.ids.sizeID.text
             descriptionID = self.ids.descriptionID.text
             favID = self.ids.favID.text
+            append_data(typeID, statusID, priceID, sizeID, descriptionID, favID)
 
 
 screen_manager = ScreenManager()
