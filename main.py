@@ -19,7 +19,7 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.core.window import Window
 import tkinter
-from dataPlotter import bar_graph
+from dataPlotter import bar_graph, line_graph
 from dataPlotter import pie_graph
 from machinelearning import ml_imageprediction
 from csvWorker import append_data
@@ -192,13 +192,13 @@ Builder.load_string("""
             on_press:
                 root.runBar()
         Label:
-			text: "Bar Graph: Type of clothing vs. Quality"
+			text: "Bar Graph: Type of clothing vs. Quantity"
             pos: 30, 150
 			font_size: 16
             color: 0, 0, 0, 1
 
         Button:
-            pos: 90, 300
+            pos: 90, 280
             size: 300, 50
             size_hint: None, None
             background_color: 1, 0.75, 0.95, 1
@@ -207,11 +207,23 @@ Builder.load_string("""
                 root.runPie()
         Label:
 			text: "Pie Chart: Type of clothing"
-            pos: 30, -150
+            pos: 30, -170
 			font_size: 16
             color: 0, 0, 0, 1
-
-
+            
+        Button:
+            pos: 90, 425
+            size: 300, 50
+            size_hint: None, None
+            background_color: 1, 0.75, 0.95, 1
+            text: "Line Graph"
+            on_press:
+                root.runLine()
+        Label:
+			text: "Line Graph: Price of clothing over Time"
+            pos: 30, 0
+			font_size: 16
+            color: 0, 0, 0, 1
 
 
 <ScreenFive>:
@@ -387,6 +399,8 @@ class ScreenFour(Screen):
             bar_graph()
     def runPie(self):
             pie_graph()
+    def runLine(self):
+            line_graph()
 
 
 class ScreenFive(Screen):
